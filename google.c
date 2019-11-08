@@ -1,4 +1,42 @@
-//f(n)å‡½æ•°çš„å®šä¹‰ä¸º0~nä¸­åŒ…å«çš„1çš„ä¸ªæ•°
-//f(13)æ˜¯0~13ä¸­åŒ…å«1çš„æœ‰ 1ï¼Œ10ï¼Œ11ï¼Œ12ï¼Œ13ï¼Œæ‰€ä»¥f(13)=6
-//f(1) = 1ã€‚
-//æ±‚å¦ä¸€ä¸ªf(n)=nçš„nå€¼
+//f(n)º¯ÊıµÄ¶¨ÒåÎª0~nÖĞ°üº¬µÄ1µÄ¸öÊı
+//f(13)ÊÇ0~13ÖĞ°üº¬1µÄÓĞ 1£¬10£¬11£¬12£¬13£¬ËùÒÔf(13)=6
+//f(1) = 1¡£
+//ÇóÁíÒ»¸öf(n)=nµÄnÖµ
+#include <stdio.h>
+ 
+int f(int n)
+{
+	int num =0;
+	
+	int tmp,rem,base;
+	base =1;
+	tmp = n;
+	
+	while(tmp)
+	{
+		rem = tmp%10;
+		tmp = tmp/10;
+		if(rem == 0)
+		{
+			num+=base*tmp;
+		}
+		else if(rem == 1)
+		{
+			num  = num + (n - (int)(n/base)*base +1 + tmp*base);
+		}
+		else
+			num += (tmp+1)*base;
+		base *= 10;
+	}
+	
+	return num;
+}
+
+int main()
+{
+	int k;
+	for(k=2; f(k)!=k; k++)
+		continue;
+	printf("%d",k);
+	return 0;
+}

@@ -1,3 +1,69 @@
-//å°æ˜Žæœ‰ 5 å¼ æ•°å­—å¡ç‰‡ï¼Œä¸Šé¢åˆ†åˆ«ä¸ºæ•°å­— 1ï¼Œ 2ï¼Œ 3ï¼Œ 6ï¼Œ 9ã€‚å°æ˜Žæƒ³ç”¨è¿™ 5 å¼ æ•°å­—å¡ç‰‡ç»„æˆä¸€ä¸ªæœ€å¤§çš„ 5 ä½
-//ç´ æ•°ï¼Œè¿™ä¸ªäº”ä½æ•°æ˜¯_______ã€‚
-//ç¼–ç¨‹ï¼šä»»æ„è¾“å…¥5ä¸ªæ•°å­—ï¼Œå°†å®ƒä»¬ç»„åˆä¸ºæœ€å¤§çš„5ä½ç´ æ•°è¾“å‡ºã€‚å¦‚æžœä¸å­˜åœ¨5ä½ç´ æ•°ï¼Œåˆ™è¾“å‡ºERRORã€‚
+//Ð¡Ã÷ÓÐ 5 ÕÅÊý×Ö¿¨Æ¬£¬ÉÏÃæ·Ö±ðÎªÊý×Ö 1£¬ 2£¬ 3£¬ 6£¬ 9¡£Ð¡Ã÷ÏëÓÃÕâ 5 ÕÅÊý×Ö¿¨Æ¬×é³ÉÒ»¸ö×î´óµÄ 5 Î»
+//ËØÊý£¬Õâ¸öÎåÎ»ÊýÊÇ_______¡£
+//±à³Ì£ºÈÎÒâÊäÈë5¸öÊý×Ö£¬½«ËüÃÇ×éºÏÎª×î´óµÄ5Î»ËØÊýÊä³ö¡£Èç¹û²»´æÔÚ5Î»ËØÊý£¬ÔòÊä³öERROR¡£
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+int judgeprime(int m)
+{
+	int a,b;
+	int judge = 1;
+	for(a=2; a<=sqrt(m); a++)
+	{
+		for(b=2; b<m; b++)
+		{
+			if(a*b==m)
+			{
+				judge = 0;
+				break;
+			}
+		}
+		if(judge==0)
+			break;
+	}
+	return judge;
+}
+int main()
+{
+	int i,j,k;
+	int x[5];
+	int max = 0;
+	int temp;
+	printf("Input 5 numbers : \n");
+	for(i=0; i<5; i++)
+	{
+		scanf("%d",&x[i]);
+	}
+	for(i=0;i<5;i++) 
+	{
+		for(j=0; j<i; j++)
+		{
+      		if( x[j] < x[i]) 
+			{
+      			temp = x[i];
+  	   			x[i] = x[j];
+  	    		x[j] = temp;
+  	    	}
+      	}
+    }
+    while(1)
+    {
+    	if(judgeprime(x[0]*pow(10,4)+x[1]*pow(10,3)+x[2]*pow(10,2)+x[3]*pow(10,1)+x[4]*pow(10,0)))
+    	{
+    		max = x[0]*pow(10,4)+x[1]*pow(10,3)+x[2]*pow(10,2)+x[3]*pow(10,1)+x[4]*pow(10,0);
+    		break;
+    	}
+    	else if(judgeprime(x[0]*pow(10,4)+x[1]*pow(10,3)+x[2]*pow(10,2)+x[4]*pow(10,1)+x[3]*pow(10,0)))
+    	{
+    		max = x[0]*pow(10,4)+x[1]*pow(10,3)+x[2]*pow(10,2)+x[4]*pow(10,1)+x[3]*pow(10,0);
+    		break;
+    	}
+    	//......´Ë´¦Ê¡ÂÔÓàÏÂ119ÖÖÇé¿ö£¬Ã»Ïëµ½ºÃËã·¨ 
+	}
+	if(max)
+		printf("error!\n");
+	else
+		printf("%d\n",max); 
+	system("pause");
+	return 0;
+}
